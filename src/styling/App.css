@@ -16,8 +16,6 @@
 .app_header {
   /* push everything in a row, flexbox is a way to help us structure a website */
   display:flex;
-  /* put options one below another */
-  /* flex-direction: column; */
   /* Aligns flex items along the main axis of the current line of the flex container. */
   justify-content: space-between;
   align-items: center;
