@@ -38,7 +38,6 @@ const options = {
           display: false,
         },
         ticks: {
-          // Include a dollar sign in the ticks
           callback: function (value, index, values) {
             return numeral(value).format("0a");
           },
@@ -48,7 +47,7 @@ const options = {
   },
 };
 
-const buildChartData = (data, casesType) => {
+const generateChartData = (data, casesType) => {
   let chartData = [];
   let lastDataPoint;
   for (let date in data.cases) {
@@ -74,7 +73,7 @@ function LineGraph({ casesType = "cases" }) {
           return response.json();
         })
         .then((data) => {
-          let chartData = buildChartData(data, casesType);
+          let chartData = generateChartData(data, casesType);
           setData(chartData);
         });
     };
