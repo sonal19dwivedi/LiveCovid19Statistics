@@ -1,0 +1,45 @@
+* {
+  /* get rid of extra header margin */
+  margin:0; 
+}
+
+.app{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.app_dropdown {
+  background-color: white;
+}
+
+.app_header {
+  /* push everything in a row, flexbox is a way to help us structure a website */
+  display:flex;
+  /* put options one below another */
+  /* flex-direction: column; */
+  /* Aligns flex items along the main axis of the current line of the flex container. */
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+body {
+  background-color: #f5f6fa;
+}
+
+.app_stats {
+  display: flex;
+  margin-top: 16px;
+  justify-content: space-between;
+}
+.app_left {
+  /* use 90% of the available width for the left panel */
+  flex: 0.9
+}
+
+@media (max-width: 990px){
+  .app {
+    flex-direction: column;
+  }
+}

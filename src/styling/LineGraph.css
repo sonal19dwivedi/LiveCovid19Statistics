@@ -1,0 +1,13 @@
+.line_graph{
+    height: 550px;
+    background-color: white;
+    padding: 1rem;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 0 8px -4px rgba(0, 0, 0, 0.5);
+}
+
+.line_graph .graph{
+    align-content: space-around;
+    height: 500px;
+}
