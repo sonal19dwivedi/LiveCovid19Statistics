@@ -30,5 +30,3 @@ function sendToAnalytics({ id, name, value }) {
 
 reportWebVitals(sendToAnalytics);
 */
-
-//JMeter can also be used for the purpose of performance testing

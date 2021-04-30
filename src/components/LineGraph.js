@@ -25,18 +25,18 @@ const options = {
   scales: {
     xAxes: [
       {
+        gridLines: {
+          display: false,
+        },
         type: "time",
         time: {
-          format: "MM/DD/YY",
+          parser: "MM/DD/YY",
           tooltipFormat: "ll",
         },
       },
     ],
     yAxes: [
       {
-        gridLines: {
-          display: false,
-        },
         ticks: {
           callback: function (value, index, values) {
             return numeral(value).format("0a");
@@ -63,7 +63,7 @@ const generateChartData = (data, casesType) => {
   return chartData;
 };
 
-function LineGraph({ casesType = "cases" }) {
+function LineGraph({ casesType }) {
   const [data, setData] = useState({});
 
   useEffect(() => {

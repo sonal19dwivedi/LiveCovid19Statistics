@@ -8,6 +8,9 @@ import '../styling/App.css';
 
 //https://corona.lmao.ninja/docs/#/COVID-19%3A%20Worldometers/get_v3_covid_19_countries
 
+const FETCH_ALL_COUNTRIES = "https://disease.sh/v3/covid-19/countries";
+const FETCH_WORLDWIDE = "https://disease.sh/v3/covid-19/all";
+
 function App() {
 
   const [countries, setCountries] = useState([]);
@@ -22,7 +25,7 @@ function App() {
     //when the variable within [] changes and not again
     //sending request to server async and wait for it
     const getCountriesData = async () => {
-      await fetch ("https://disease.sh/v3/covid-19/countries").then((response) => response.json()).then((data) => {
+      await fetch (FETCH_ALL_COUNTRIES).then((response) => response.json()).then((data) => {
         const countries = data.map((country) => (
           {
             name: country.country,
@@ -39,7 +42,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("https://disease.sh/v3/covid-19/all").then(response => response.json()).then((data) => {
+    fetch(FETCH_WORLDWIDE).then(response => response.json()).then((data) => {
       setCountryInfo(data);
     });
   }, []);
@@ -48,7 +51,7 @@ function App() {
     const countryCode = event.target.value; // get the selected value
     setCountry(countryCode); //set the state
 
-    const url = countryCode === 'worldwide' ? 'https://disease.sh/v3/covid-19/all':`https://disease.sh/v3/covid-19/countries/${countryCode}`
+    const url = countryCode === 'worldwide' ? FETCH_WORLDWIDE:`https://disease.sh/v3/covid-19/countries/${countryCode}`
 
     await fetch(url).then(response => response.json()).then((data) => {
       setCountry(countryCode);
@@ -63,7 +66,9 @@ function App() {
     <div className="app_header">
         <h1 data-testid="dashboard-header">Live COVID-19 Statistics</h1>
         <FormControl data-testid="dropdown-button" className = "app_dropdown">
-          <Select variant = "outlined" value={country} onChange={onCountryChange}>
+        
+          <Select variant = "outlined" value={country} onChange={onCountryChange}> {//value: The input value, onChange: Callback function fired when a menu item is selected.
+          }
           <MenuItem value="worldwide">Worldwide</MenuItem>
           {
             // using jsx to combine HTML with javaScript
@@ -79,7 +84,7 @@ function App() {
       <LineGraph casesType={casesType}/>
 
       <div className="app_stats">
-        <InfoBox title="Total Critical Cases" cases={convertStatToDecimal(countryInfo.critical ? countryInfo.critical:"-")}/>
+        <InfoBox active={false} title="Total Critical Cases" cases={convertStatToDecimal(countryInfo.critical ? countryInfo.critical:"-")}/>
         <InfoBox active={casesType==="cases"} onClick={e => setCasesType('cases')} title="Active Cases Today" cases= {convertStatToDecimal(countryInfo.todayCases ? countryInfo.todayCases:"-")} total={convertStatToDecimal(countryInfo.cases)}/>
         <InfoBox active={casesType==="recovered"} onClick={e => setCasesType('recovered')} title="Recovered Today" cases={convertStatToDecimal(countryInfo.todayRecovered ? countryInfo.todayRecovered:"-")} total={convertStatToDecimal(countryInfo.recovered)}/>
         <InfoBox active={casesType==="deaths"} onClick={e => setCasesType('deaths')} title="Deaths Today" cases={convertStatToDecimal(countryInfo.todayDeaths ? countryInfo.todayDeaths:"-")} total={convertStatToDecimal(countryInfo.cases)}/>

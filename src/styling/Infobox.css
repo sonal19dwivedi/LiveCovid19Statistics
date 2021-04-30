@@ -6,9 +6,13 @@
     margin-right:10px;
 }
 
-.infoBox:not(:first-child) {
+.infoBox:not(:first-child){
     cursor: pointer;
 }
+.infoBox:not(:first-child) :hover{
+    color:#4285f4;
+}
+
 
 .infoBox_cases {
      font-weight: 600;
@@ -24,5 +28,6 @@
 }
 
 .infoBox--selected{
-    border-top: #4285f4;
+    border-top: 5px solid #4285f4;
+    border-bottom: 2.5px solid #4285f4;
 } 
