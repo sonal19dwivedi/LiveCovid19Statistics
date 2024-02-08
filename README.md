@@ -1,3 +1,5 @@
+https://sonal19dwivedi.github.io/LiveCovid19Statistics/
+
 # SnapShot of the App
 ![snapshot of the app](https://user-images.githubusercontent.com/55930375/115512889-73464300-a250-11eb-9274-6b33a9f0b15e.JPG)
 
